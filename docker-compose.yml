@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+
+  os:
+    image: otrs:debian
+    container_name: otrs
+    build: ./
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t  
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+      - 2222:22
+    volumes:
+      - opt:/opt/
+      - etc:/etc/
+    networks: 
+      - otrs
+  db:
+    image: mysql
+    container_name: mysql
+    restart: always
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0 --innodb_log_file_size=2048M
+    environment:
+      MYSQL_USER: otrs
+      MYSQL_PASSWORD: jurema
+      MYSQL_DATABASE: otrs
+      MYSQL_ROOT_PASSWORD: jurema
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql:/var/mysql
+    networks: 
+      - otrs
+    depends_on:
+      - os
+
+networks:
+  otrs:
+    driver: bridge
+
+volumes:
+  opt:
+  mysql:
+  etc:
