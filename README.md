@@ -21,4 +21,4 @@ docker exec -it otrs /etc/init.d/apache2 start
 ```
 Acesse: http://<FQDN>/otrs/installer.pl e siga o processo.
 
-Consire a instalação do docker conforme: https://docs.docker.com/engine/install/debian/ 
+Considere a instalação do docker conforme: https://docs.docker.com/engine/install/debian/ 
