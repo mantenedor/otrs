@@ -1,47 +1,48 @@
-version: "3"
+version: "3.7"
 
 services:
 
-  os:
-    image: otrs:debian
-    container_name: otrs
+  web:
     build: ./
     stdin_open: true # docker run -i
-    tty: true        # docker run -t  
+    tty: true        # docker run -t
+    image: apache
+    container_name: otrs
     restart: always
     ports:
+      - 8083:8083
+      - 8082:8082
       - 80:80
       - 443:443
-      - 2222:22
+      - 1901:1901
     volumes:
-      - opt:/opt/
-      - etc:/etc/
+      - ./web/html/:/usr/local/apache2/htdocs/
+      - apache2:/usr/local/apache2
     networks: 
       - otrs
   db:
-    image: mysql
-    container_name: mysql
+    image: mariadb
+    container_name: mariadb
     restart: always
-    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0 --innodb_log_file_size=2048M
     environment:
-      MYSQL_USER: otrs
-      MYSQL_PASSWORD: jurema
-      MYSQL_DATABASE: otrs
-      MYSQL_ROOT_PASSWORD: jurema
+      MARIADB_USER: otrs
+      MARIADB_PASSWORD: jurema
+      MARIADB_DATABASE: otrs
+      MARIADB_ROOT_PASSWORD: jurema
     ports:
       - 3306:3306
     volumes:
-      - mysql:/var/mysql
+      - mysql:/var/lib/mysql
+      - ./db/conf/zotrs.cnf:/etc/mysql/mariadb.conf.d/zotrs.cnf
+      - ./db/conf/utf8.cnf:/etc/mysql/mariadb.conf.d/utf8.cnf
     networks: 
       - otrs
-    depends_on:
-      - os
-
+    #depends_on:
+    #  - web
 networks:
   otrs:
     driver: bridge
 
 volumes:
-  opt:
   mysql:
-  etc:
+  apache2:

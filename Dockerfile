@@ -1,9 +1,9 @@
-FROM debian:latest
+FROM httpd
 
-CMD ["bash"]
-
-RUN apt-get update && apt-get install -y time wget iputils-ping htop vim ca-certificates default-mysql-client systemd 
-
-COPY otrs_install.sh /opt
-
-RUN cd /opt && ./otrs_install.sh
+COPY ./web/html /usr/local/apache2/htdocs/
+COPY ./web/conf/httpd.conf /usr/local/apache2/conf/httpd.conf
+#CMD ["bash"]
+#RUN sed -i -e 's/^#\(Include .*httpd-ssl.conf\)/\1/' -e 's/^#\(LoadModule .*mod_ssl.so\)/\1/' -e 's/^#\(LoadModule .*mod_socache_shmcb.so\)/\1/' conf/httpd.conf
+RUN mkdir /opt/scripts 
+COPY scripts /opt/scripts
+RUN cd /opt/scripts && ./build.sh

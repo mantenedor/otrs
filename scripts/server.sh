@@ -8,14 +8,18 @@
 
 
 CONTAINER_NAME=`pwd | cut -d'/' -f2`
+WORKDIR="../"
 CD=10 # Tempo para reflexão
+
+cd $WORKDIR
 
 function BUILD {
         echo "Destruindo containers..."
         docker compose down
         echo "Destruindo volumes..."
-	docker volume ls -q | grep "$CONTAINER_NAME" | xargs docker volume rm
+	docker volume ls -qa | grep "$CONTAINER_NAME" | xargs docker volume rm
         echo "Construindo containers..."
+	#docker build -t apache .
         docker compose up -d
         echo ""
 	docker ps
@@ -53,7 +57,7 @@ function DESTROY {
         echo "###################### ATENÇÃO ##########################"
         echo "#########################################################"
         echo ""
-        echo "Este parâmetro irá destruir todos os containers e imagens neste host."
+        echo "Este parâmetro irá destruir todos os logs, caches, containers, imagens e conatiner networks neste host."
         echo "Você tem $CD segundos para cancelar esta operação..."
         echo ""
         for((i = $CD; i >= 1; i--))do
@@ -61,10 +65,12 @@ function DESTROY {
                 sleep 1
         done
         echo ""
-        echo "Destruindo contaires..."
+        echo "Parando contaires..."
         docker compose down
         docker ps -q | xargs docker stop
-        docker ps -aq | xargs docker rm
+        echo "Destruindo contaires e recursos..."
+	docker system prune --all --volumes --force
+        #docker ps -aq | xargs docker rm
         echo ""
         echo "Destruindo imagens..."
         docker images -q | xargs docker image rm
@@ -72,7 +78,10 @@ function DESTROY {
         echo "Destruindo volumes..."
         docker volume ls -q | xargs docker volume rm
         echo ""
-        echo "Tentativa destruição concluída."
+        echo "Destruindo logs..."
+	find /var/lib/docker/containers/ -type f -name “*.log” -delete
+        echo ""
+        echo "Tentantiva de destruição encerrada."
         echo ""
 
 }
