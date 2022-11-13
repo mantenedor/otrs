@@ -1,24 +1,24 @@
 # otrs
-https://www.znuny.org/en
 
-# Containers
-São criados 2 containers:
 
-1. Debian (apache pearl, etc)
-2. Mysql
+## Containers
+São configurados 2 containers:
 
-# Script de instalação
-O script "otrs_install.sh" baixa e instala todos os pacotes.
+1. https://hub.docker.com/_/httpd
+2. https://hub.docker.com/_/mariadb
+### Softwares essenciais
+Essencialmente, são configurados os softwares abaixo:
+1. https://www.znuny.org/en
+2. https://certbot.eff.org/instructions?ws=apache&os=debianbuster
 
-# Deoploy
+## Scripts de instalação
+O script "build.sh" executará, em sequência, todos os scripts presentes no diretório "scripts".
+
+## Deoploy
 execute:
 ```
 ./server.sh --build
 ```
-Inicie o apache: 
-```
-docker exec -it otrs /etc/init.d/apache2 start
-```
 Acesse: http://<FQDN>/otrs/installer.pl e siga o processo.
 
-Considere a instalação do docker conforme: https://docs.docker.com/engine/install/debian/ 
+Considere a instalação do docker conforme: https://docs.docker.com/engine/install/debian/
