@@ -22,3 +22,4 @@ cat /opt/otrs/scripts/apache2-httpd.include.conf >> /etc/apache2/conf/httpd.conf
 #a2enmod headers
 cd /opt/otrs/
 bin/otrs.SetPermissions.pl
+./2certbot.sh -r

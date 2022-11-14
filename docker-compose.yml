@@ -17,7 +17,11 @@ services:
       - 1901:1901
     volumes:
       - ./web/html/:/usr/local/apache2/htdocs/
+      - ./web/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./web/conf/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf
+      - /opt/pki/:/etc/letsencrypt/
       - apache2:/usr/local/apache2
+      - otrs:/opt/
     networks: 
       - otrs
   db:
@@ -46,3 +50,4 @@ networks:
 volumes:
   mysql:
   apache2:
+  otrs:

@@ -47,7 +47,7 @@ function RESTART {
 }
 function STOP {
         echo "Parando contaires..."
-        docker-compose down
+        docker compose down
         echo ""
 	docker ps
 }
