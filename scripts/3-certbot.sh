@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function INSTALCERTBOT {
+function INSTALLCERTBOT {
 	echo ""
 	echo "Instalando pacotes..." 
 	apt install python3-certbot -y
