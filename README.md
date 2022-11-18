@@ -16,10 +16,63 @@ Utilise scripts para ajustar a instalação.
 O script "build.sh" executará, em sequência, todos os scripts presentes no diretório "scripts".
 
 ## Deoploy
+
+No diretórrio de sua preferência digite:
+```
+$ git clone https://github.com/mantenedor/otrs.git
+```
 execute:
 ```
-./server.sh --build
+$ ./server.sh --build
 ```
-Acesse: http://<FQDN>/otrs/installer.pl e siga o processo.
+Verifique se a palavra "Funfa!" aparece na url do seu servidor:
+```
+http://<seu_IP_ou_URL>
+```
+Verifique a tela de instalação do OTRS está disponível em:
+```
+http://<seu_IP_ou_URL>/otrs/installer.pl
+```
+Em http://<seu_IP_ou_URL>/installer.pl, selecione "Usar um banco existente", informe o banco, usuário, senha e endereço do bando de dados presente no arquivo "docker-compose.yml".
+No endereço do banco você pode infiormar "db", caso não tenha alterado o compose.
+Siga o processo de isntalação até o final.
+
+Execute o script de poós instalação para ativar o daemon:
+```
+$ ./4-pos_install.sh --start
+```
+Seu OTRS está instalado.
+
+Você pode configurar o TLS utilizando o script "3-certbot.sh".
+Você precisa executar essa operação dento do container:
+
+Para entar no container digite:
+```
+docker exc -it otrs /bin/bash
+```
+```
+cd /opt/scripts
+```
+Intalando o certbot:
+```
+$ ./3-certbot.sh -i
+```
+Gerando o certificado:
+```
+$ ./3-certbot.sh -n /usr/local/apache2/htdocs/ exemplo.com.br mail@exemplo.com.br
+```
+Habilitando renovação:
+```
+$ ./3-certbot.sh -r
+```
+Fora do container, para habilitar SSL, execute:
+```
+$ ./3-certbot.sh --ssl
+```
+Reinicie o contaner para aplicar a mudança:
+```
+# docker restart otrs
+```
+
 
 Considere a instalação do docker conforme: https://docs.docker.com/engine/install/debian/
