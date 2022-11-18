@@ -42,7 +42,7 @@ Em "http://<seu_IP_ou_URL>/installer.pl", selecione "Usar um banco existente", i
 No endereço do banco você pode infiormar "db", caso não tenha alterado o compose.
 Siga o processo de isntalação até o final.
 
-Execute o script de poós instalação para ativar o daemon:
+Execute o script de pós-instalação para ativar o daemon:
 ```
 $ ./4-pos_install.sh --start
 ```
