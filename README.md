@@ -38,6 +38,12 @@ Verifique a tela de instalação do OTRS está disponível em:
 ```
 http://<seu_IP_ou_URL>/otrs/installer.pl
 ```
+Reveja suas configurações de rede/firewall e repita o perocesso, em caso de insucesso.
+Você pode utilizar o comando abaixo para higienizar sua instalação:
+```
+./server.sh --destroy
+```
+
 Em "http://<seu_IP_ou_URL>/installer.pl", selecione "Usar um banco existente", informe o banco, usuário, senha e endereço do bando de dados presente no arquivo "docker-compose.yml".
 No endereço do banco você pode infiormar "db", caso não tenha alterado o compose.
 Siga o processo de isntalação até o final.
