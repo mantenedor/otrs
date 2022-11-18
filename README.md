@@ -65,6 +65,15 @@ Habilitando renovação:
 ```
 $ ./3-certbot.sh -r
 ```
+Antes de habilitar o SSL verifique se as configurações do seu virtuahost estão de acordo com suas preferências em "./web/conf/httpd-ssl.conf" e altere o caminho do certificado para seu domínio:
+```
+<VirtualHost *:443>
+...
+        SSLCertificateFile "/etc/letsencrypt/live/<dominio_do_certificado>/fullchain.pem"
+        SSLCertificateKeyFile "/etc/letsencrypt/live/<e_p_substiyuir_abestado>/privkey.pem"
+...
+</VirtualHost>
+```
 Fora do container, para habilitar SSL, execute:
 ```
 $ ./3-certbot.sh --ssl
