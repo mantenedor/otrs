@@ -1,4 +1,4 @@
-# otrs
+# OTRS
 Instalação mínima do OTRS em container.
 
 Considere uma instalação conforme abaixo:
