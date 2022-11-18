@@ -65,7 +65,9 @@ Habilitando renovação:
 ```
 $ ./3-certbot.sh -r
 ```
-Antes de habilitar o SSL verifique se as configurações do seu virtuahost estão de acordo com suas preferências em "./web/conf/httpd-ssl.conf" e "./web/conf/httpd-conf" e altere o caminho do certificado para seu domínio:
+Antes de habilitar o SSL verifique se as configurações do seu virtualhost estão de acordo com suas preferências em "./web/conf/httpd-ssl.conf" e "./web/conf/httpd-conf".
+
+Altere o caminho do certificado para seu domínio:
 ```
 <VirtualHost *:443>
 ...
