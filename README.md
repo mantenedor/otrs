@@ -17,7 +17,7 @@ Essencialmente, são configurados os softwares abaixo:
 2. https://certbot.eff.org/instructions?ws=apache&os=debianbuster
 
 ## Scripts de instalação
-Utilise scripts para ajustar a instalação.
+Utilize scripts para ajustar a instalação.
 O script "build.sh" executará, em sequência, todos os scripts presentes no diretório "scripts".
 
 ## Deoploy
