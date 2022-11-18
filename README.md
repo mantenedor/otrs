@@ -1,6 +1,11 @@
 # otrs
 Instalação mínima do OTRS em container.
 
+Considere uma instalação conforme abaixo:
+ 1. docker conforme: https://docs.docker.com/engine/install/debian/;
+ 2. Nome do coantainer "otrs";
+ 3. Diretório de instalação "/opt".
+
 ## Containers
 São configurados 2 containers:
 
@@ -84,6 +89,3 @@ Reinicie o contaner para aplicar a mudança:
 ```
 # docker restart otrs
 ```
-
-
-Considere a instalação do docker conforme: https://docs.docker.com/engine/install/debian/
