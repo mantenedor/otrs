@@ -20,7 +20,7 @@ Essencialmente, são configurados os softwares abaixo:
 Utilize scripts para ajustar a instalação.
 O script "build.sh" executará, em sequência, todos os scripts presentes no diretório "scripts".
 
-## Deoploy
+## Deploy
 
 No diretórrio de sua preferência digite:
 ```
