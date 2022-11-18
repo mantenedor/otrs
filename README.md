@@ -55,26 +55,19 @@ Execute o script de pós-instalação para ativar o daemon:
 Seu OTRS está instalado.
 
 Você pode configurar o TLS utilizando o script "3-certbot.sh".
-Você precisa executar essa operação dento do container:
+Você precisa executar essa operação dento do container.
 
-Para entar no container digite:
-```
-docker exc -it otrs /bin/bash
-```
-```
-cd /opt/scripts
-```
 Intalando o certbot:
 ```
-./3-certbot.sh -i
+docker exec -it otrs /bin/bash /opt/scripts/3-certbot.sh -i
 ```
 Gerando o certificado:
 ```
-./3-certbot.sh -n /usr/local/apache2/htdocs/ exemplo.com.br mail@exemplo.com.br
+docker exec -it otrs /bin/bash /opt/scripts/3-certbot.sh -n /usr/local/apache2/htdocs/ exemplo.com.br mail@exemplo.com.br
 ```
 Habilitando renovação:
 ```
-./3-certbot.sh -r
+docker exec -it otrs /bin/bash /opt/scripts/3-certbot.sh -r
 ```
 Antes de habilitar o SSL verifique se as configurações do seu virtualhost estão de acordo com suas preferências em "./web/conf/httpd-ssl.conf" e "./web/conf/httpd-conf".
 
