@@ -63,7 +63,7 @@ function HELP {
 case $1 in
         -i) INSTALLCERTBOT;;
         -n) NEWCERTIFY;;
-        -r) RENEWCRTFY;;
+        -r) RENEWCERTIFY;;
         --ssl) SSLON;;
         -h) HELP;;
         *) HELP;;
