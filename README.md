@@ -24,11 +24,11 @@ O script "build.sh" executará, em sequência, todos os scripts presentes no dir
 
 No diretórrio de sua preferência digite:
 ```
-$ git clone https://github.com/mantenedor/otrs.git
+git clone https://github.com/mantenedor/otrs.git
 ```
 execute:
 ```
-$ ./server.sh --build
+./server.sh --build
 ```
 Verifique se a palavra "Funfa!" aparece na url do seu servidor:
 ```
@@ -50,7 +50,7 @@ Siga o processo de isntalação até o final.
 
 Execute o script de pós-instalação para ativar o daemon:
 ```
-$ ./4-pos_install.sh --start
+./4-pos_install.sh --start
 ```
 Seu OTRS está instalado.
 
@@ -66,15 +66,15 @@ cd /opt/scripts
 ```
 Intalando o certbot:
 ```
-$ ./3-certbot.sh -i
+./3-certbot.sh -i
 ```
 Gerando o certificado:
 ```
-$ ./3-certbot.sh -n /usr/local/apache2/htdocs/ exemplo.com.br mail@exemplo.com.br
+./3-certbot.sh -n /usr/local/apache2/htdocs/ exemplo.com.br mail@exemplo.com.br
 ```
 Habilitando renovação:
 ```
-$ ./3-certbot.sh -r
+./3-certbot.sh -r
 ```
 Antes de habilitar o SSL verifique se as configurações do seu virtualhost estão de acordo com suas preferências em "./web/conf/httpd-ssl.conf" e "./web/conf/httpd-conf".
 
@@ -89,7 +89,7 @@ Altere o caminho do certificado para seu domínio:
 ```
 Fora do container, para habilitar SSL, execute:
 ```
-$ ./3-certbot.sh --ssl
+./3-certbot.sh --ssl
 ```
 Reinicie o contaner para aplicar a mudança:
 ```
