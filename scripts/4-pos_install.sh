@@ -10,7 +10,8 @@ cd $WORKDIR
 
 function DAEMON {
 	echo "Inciando o daemon..."
-	docker exec -it otrs su -c "/opt/otrs/bin/otrs.Daemon.pl start" -s /bin/bash otrs
+	#docker exec -it otrs su -c "/opt/otrs/bin/otrs.Daemon.pl start" -s /bin/bash otrs
+	docker exec -it otrs su -c "/opt/otrs/bin/Cron.sh start" -s /bin/bash otrs
 }
 
 function HELP {\
