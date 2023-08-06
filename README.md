@@ -16,10 +16,6 @@ Essencialmente, são configurados os softwares abaixo:
 1. https://www.znuny.org/en
 2. https://certbot.eff.org/instructions?ws=apache&os=debianbuster
 
-## Scripts de instalação
-Utilize scripts para ajustar a instalação.
-O script "build.sh" executará, em sequência, todos os scripts presentes no diretório "scripts".
-
 ## Deploy
 
 No diretórrio de sua preferência digite:
@@ -28,7 +24,7 @@ git clone https://github.com/mantenedor/otrs.git
 ```
 execute:
 ```
-./server.sh --build
+docker compose up -d
 ```
 Verifique se a palavra "Funfa!" aparece na url do seu servidor:
 ```
@@ -38,21 +34,20 @@ Verifique a tela de instalação do OTRS está disponível em:
 ```
 http://<seu_IP_ou_URL>/otrs/installer.pl
 ```
-Reveja suas configurações de rede/firewall e repita o perocesso, em caso de insucesso.
-Você pode utilizar o comando abaixo para higienizar sua instalação:
+Execute o cron
 ```
-./server.sh --destroy
+docker exec -it otrs su -c "/opt/otrs/bin/Cron.sh start" -s /bin/bash otrs
+```
+
+Reveja suas configurações de rede/firewall e repita o perocesso, em caso de insucesso.
+Utilize o comando abaixo entre os testes:
+```
+docker compose down && docker system prune --all --volumes --force
 ```
 
 Em "http://<seu_IP_ou_URL>/installer.pl", selecione "Usar um banco existente", informe o banco, usuário, senha e endereço do bando de dados presente no arquivo "docker-compose.yml".
 No endereço do banco você pode infiormar "db", caso não tenha alterado o compose.
 Siga o processo de isntalação até o final.
-
-Execute o script de pós-instalação para ativar o daemon:
-```
-./4-pos_install.sh --start
-```
-Seu OTRS está instalado.
 
 Você pode configurar o TLS utilizando o script "3-certbot.sh".
 Você precisa executar essa operação dento do container.
