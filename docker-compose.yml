@@ -4,9 +4,8 @@ services:
 
   web:
     build: ./
-    stdin_open: true # docker run -i
-    tty: true        # docker run -t
-    image: apache
+    #stdin_open: true # docker run -i
+    #tty: true        # docker run -t
     container_name: otrs
     restart: always
     ports:
@@ -16,10 +15,11 @@ services:
       - 443:443
       - 1901:1901
     volumes:
-      - ./web/html/:/usr/local/apache2/htdocs/
-      - ./web/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
-      - ./web/conf/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf
-      - /opt/pki/:/etc/letsencrypt/
+      - ./httpd/html/:/usr/local/apache2/htdocs/
+      - ./cert/server.crt:/usr/local/apache2/conf/server.crt
+      - ./cert/server.key:/usr/local/apache2/conf/server.key
+      - ./httpd/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./httpd/conf/httpd-ssl.conf:/usr/local/apache2/conf/extra/httpd-ssl.conf
       - apache2:/usr/local/apache2
       - otrs:/opt/
     networks: 
@@ -37,8 +37,7 @@ services:
       - 3306:3306
     volumes:
       - mysql:/var/lib/mysql
-      - ./db/conf/zotrs.cnf:/etc/mysql/mariadb.conf.d/zotrs.cnf
-      - ./db/conf/utf8.cnf:/etc/mysql/mariadb.conf.d/utf8.cnf
+      - ./db/conf/50-znuny_config.cnf:/etc/mysql/mariadb.conf.d/50-znuny_config.cnf
     networks: 
       - otrs
     #depends_on:
@@ -46,7 +45,6 @@ services:
 networks:
   otrs:
     driver: bridge
-
 volumes:
   mysql:
   apache2:
