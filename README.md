@@ -39,7 +39,7 @@ Execute o cron
 docker exec -it otrs su -c "/opt/otrs/bin/Cron.sh start" -s /bin/bash otrs
 ```
 
-Reveja suas configurações de rede/firewall e repita o perocesso, em caso de insucesso.
+Reveja suas configurações de rede/firewall e repita o processo, em caso de insucesso.
 Utilize o comando abaixo entre os testes:
 ```
 docker compose down && docker system prune --all --volumes --force
