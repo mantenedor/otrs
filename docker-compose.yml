@@ -29,10 +29,19 @@ services:
     container_name: mariadb
     restart: always
     environment:
-      MARIADB_USER: otrs
+      MARIADB_USER: jurema
       MARIADB_PASSWORD: jurema
-      MARIADB_DATABASE: otrs
+      MARIADB_DATABASE: jurema
       MARIADB_ROOT_PASSWORD: jurema
+    command:
+      - "--character-set-server=utf8"
+      - "--collation-server=utf8_unicode_ci"
+      - "--init-connect=SET NAMES utf8;"
+      - "--innodb-flush-log-at-trx-commit=0"
+      - "--max_allowed_packet=64M"
+      - "--innodb_log_file_size=512M"
+      #command:
+      #- '--max_allowed_packet=64M'
     ports:
       - 3306:3306
     volumes:
